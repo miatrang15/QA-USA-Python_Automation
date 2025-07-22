@@ -1,4 +1,4 @@
-URBAN_ROUTES_URL = ' https://cnt-0cfc08a2-9cd1-420d-b6a4-20f8f7232dcc.containerhub.tripleten-services.com'
+URBAN_ROUTES_URL = ' https://cnt-cd2d02c5-669c-449e-b265-5d0f8e0097fd.containerhub.tripleten-services.com '
 
 # You'll also add these other constants:
 ADDRESS_FROM = 'East 2nd Street, 601'
