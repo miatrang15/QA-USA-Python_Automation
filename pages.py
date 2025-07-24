@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import time
 
 # 2. CLASS DEFINITION
 class UrbanRoutesPage:
@@ -12,9 +12,9 @@ class UrbanRoutesPage:
         self.wait = WebDriverWait(driver, 15)
 
     # 3 LOCATORS
-    FROM_FIELD = (By.ID, "from-input")
-    TO_FIELD = (By.ID, "to-input")
-    CALL_TAXI_BUTTON = (By.CLASS_NAME, "search-button")
+    FROM_FIELD = (By.ID, "from")
+    TO_FIELD = (By.ID, "to")
+    CALL_TAXI_BUTTON = (By.XPATH, "//button[text()='Call a taxi']")
     SUPPORTIVE_PLAN = (By.XPATH, "//div[contains(@class,'tcard') and .//div[text()='Supportive']]")
     PLAN_SELECTED = (By.CSS_SELECTOR, ".tcard.active")
     PHONE_FIELD = (By.ID, "phone")
@@ -53,13 +53,9 @@ class UrbanRoutesPage:
         return to_field.get_attribute("value")
 
     # ACTION METHODS SECTION
+    
     def set_addresses(self, from_address, to_address):
-        from_field = self.wait.until(EC.presence_of_element_located(self.FROM_FIELD))
-        to_field = self.wait.until(EC.presence_of_element_located(*self.TO_FIELD))
-        from_field.clear()
-        to_field.clear()
-        from_field.send_keys(from_address)
-        to_field.send_keys(to_address)
+        self.wait.until(EC.presence_of_element_located(self.CALL_TAXI_BUTTON))
 
     def click_call_taxi(self):
         self.wait.until(EC.element_to_be_clickable(self.CALL_TAXI_BUTTON)).click()
